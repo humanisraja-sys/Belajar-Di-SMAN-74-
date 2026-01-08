@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Pembelajaran JS: Inline Script</title>
+</head>
+<body>
+
+    <h2>Contoh Penulisan JavaScript Inline</h2>
+    
+    <button onclick="alert('Ini dipicu dari atribut onclick!')">
+        Klik Saya (onclick)
+    </button>
+
+    <br><br>
+
+    <a href="javascript:void(0)" onclick="console.log('Link diklik tanpa pindah halaman')">
+        Klik Link (Console Log)
+    </a>
+
+    <br><br>
+
+    <button onmouseover="tampilkanPesan()">
+        Arahkan Mouse ke Sini
+    </button>
+
+    <script>
+        // Fungsi ini dipanggil secara inline dari tombol di atas
+        function tampilkanPesan() {
+            console.log("Mouse baru saja melewati tombol!");
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Workshop Internal: Dasar JavaScript</title>
+    
+    <script>
+        console.log("1. Head: Script di sini dieksekusi sangat awal.");
+        
+        function sapaUser() {
+            alert("Halo! Anda baru saja memicu fungsi JavaScript.");
+        }
+    </script>
+</head>
+<body>
+
+    <h1>Belajar JavaScript Dasar</h1>
+    <p>Buka <strong>Console Browser</strong> (F12 > Console) untuk melihat output.</p>
+
+    <div id="demo-box" style="padding: 10px; border: 1px solid #ccc; margin: 10px 0;">
+        Teks ini akan berubah.
+    </div>
+
+    <button onclick="sapaUser()">Klik Saya (Alert)</button>
+    <button onclick="ubahTeks()">Ubah Teks (DOM Manipulation)</button>
+
+    <script>
+        console.log("2. Body: Script di sini berjalan setelah elemen HTML di atas terbaca.");
+
+        // Contoh manipulasi elemen (DOM)
+        function ubahTeks() {
+            const elemen = document.getElementById("demo-box");
+            elemen.innerHTML = "<strong>Hebat!</strong> JavaScript berhasil mengubah isi HTML.";
+            elemen.style.backgroundColor = "#e1f5fe";
+        }
+
+        // Contoh Output ke Console
+        let namaTim = "Tim Developer";
+        console.log("Selamat datang, " + namaTim);
+    </script>
+
+    </body>
+</html>
