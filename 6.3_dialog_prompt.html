@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Dialog: Prompt</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #dfe6e9; display: flex; justify-content: center; padding-top: 50px; }
+        .card { background: white; padding: 2.5rem; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); width: 380px; text-align: center; }
+        h2 { color: #2d3436; }
+        .hasil-input { color: #6c5ce7; font-weight: bold; font-size: 1.2rem; }
+        button { background: #6c5ce7; color: white; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Dialog Prompt</h2>
+        <p>Siapa nama Anda?</p>
+        <button onclick="tampilPrompt()">Input Nama</button>
+        <p class="hasil-input" id="namaUser"></p>
+    </div>
+
+    <script>
+        function tampilPrompt() {
+            let nama = prompt("Masukkan nama lengkap kamu:", "");
+            if (nama != null && nama != "") {
+                document.getElementById("namaUser").innerHTML = "Halo, " + nama + "!";
+            } else {
+                document.getElementById("namaUser").innerHTML = "Nama belum diisi.";
+            }
+        }
+    </script>
+</body>
+</html>

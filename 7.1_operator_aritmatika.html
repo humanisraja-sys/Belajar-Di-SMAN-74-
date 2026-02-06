@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Operator Aritmatika</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #ecf0f1; display: flex; justify-content: center; padding-top: 50px; }
+        .card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 400px; }
+        h2 { color: #2980b9; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .res { background: #f9f9f9; border-left: 5px solid #3498db; padding: 10px; margin: 10px 0; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Aritmatika (+, -, *, /, %)</h2>
+        <div id="output" class="res"></div>
+    </div>
+
+    <script>
+        let a = 10;
+        let b = 3;
+        
+        document.getElementById("output").innerHTML = 
+            "10 + 3 = " + (a + b) + "<br>" +
+            "10 - 3 = " + (a - b) + "<br>" +
+            "10 * 3 = " + (a * b) + "<br>" +
+            "10 / 3 = " + (a / b).toFixed(2) + "<br>" +
+            "10 % 3 = " + (a % b) + " (Sisa Bagi)";
+    </script>
+</body>
+</html>

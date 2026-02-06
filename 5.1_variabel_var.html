@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Belajar Variabel: var</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; display: flex; justify-content: center; padding-top: 50px; }
+        .card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 400px; }
+        h2 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .output { background: #2d3436; color: #fab1a0; padding: 15px; border-radius: 5px; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Variabel: var</h2>
+        <p>Hasil Output:</p>
+        <div id="display" class="output"></div>
+    </div>
+
+    <script>
+        var nama = "Petani Kode";
+        var nama = "Pengunjung"; // var boleh dideklarasikan ulang
+        
+        document.getElementById("display").innerHTML = "Halo, " + nama;
+    </script>
+</body>
+</html>

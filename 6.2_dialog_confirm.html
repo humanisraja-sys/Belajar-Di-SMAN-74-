@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Dialog: Confirm</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #dfe6e9; display: flex; justify-content: center; padding-top: 50px; }
+        .card { background: white; padding: 2.5rem; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); width: 380px; text-align: center; }
+        h2 { color: #2d3436; }
+        #status { font-style: italic; color: #d63031; margin-top: 20px; }
+        button { background: #e17055; color: white; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Dialog Confirm</h2>
+        <p>Apakah Anda yakin ingin menghapus data ini?</p>
+        <button onclick="tampilConfirm()">Hapus Data</button>
+        <p id="status"></p>
+    </div>
+
+    <script>
+        function tampilConfirm() {
+            let yakin = confirm("Apakah anda yakin?");
+            let info = document.getElementById("status");
+            
+            if (yakin) {
+                info.innerHTML = "Hasil: Data Berhasil Dihapus!";
+            } else {
+                info.innerHTML = "Hasil: Aksi Dibatalkan.";
+            }
+        }
+    </script>
+</body>
+</html>

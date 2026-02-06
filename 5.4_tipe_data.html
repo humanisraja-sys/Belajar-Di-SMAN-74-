@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Belajar Tipe Data</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; display: flex; justify-content: center; padding-top: 50px; }
+        .card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 400px; }
+        h2 { color: #2c3e50; border-bottom: 2px solid #f1c40f; padding-bottom: 10px; }
+        .output { background: #2d3436; color: #ffeaa7; padding: 15px; border-radius: 5px; font-family: monospace; line-height: 1.5; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Tipe Data</h2>
+        <p>Hasil Output:</p>
+        <div id="display" class="output"></div>
+    </div>
+
+    <script>
+        let produk = "Kopi Hitam"; // String
+        let stok = 25;             // Number
+        let tersedia = true;       // Boolean
+
+        document.getElementById("display").innerHTML = 
+            "Produk: " + produk + "<br>" +
+            "Stok: " + stok + "<br>" +
+            "Tersedia: " + tersedia;
+    </script>
+</body>
+</html>

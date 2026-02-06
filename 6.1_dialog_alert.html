@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Dialog: Alert</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #dfe6e9; display: flex; justify-content: center; padding-top: 50px; }
+        .card { background: white; padding: 2.5rem; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); width: 380px; text-align: center; }
+        h2 { color: #2d3436; }
+        button { background: #0984e3; color: white; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; transition: 0.3s; }
+        button:hover { background: #74b9ff; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Dialog Alert</h2>
+        <p>Klik tombol untuk memunculkan pesan peringatan.</p>
+        <button onclick="tampilAlert()">Buka Alert</button>
+    </div>
+
+    <script>
+        function tampilAlert() {
+            alert("Selamat datang di tutorial JavaScript!");
+        }
+    </script>
+</body>
+</html>

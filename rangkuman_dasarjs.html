@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dasar JavaScript - Petani Kode</title>
+    <style>
+        :root {
+            --js-color: #f7df1e;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --glass-bg: rgba(255, 255, 255, 0.9);
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: #2d3436;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            padding: 3rem 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .container {
+            max-width: 800px;
+            width: 90%;
+            margin-bottom: 50px;
+        }
+
+        .section {
+            background: var(--glass-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        h2 {
+            color: #6c5ce7;
+            border-bottom: 2px solid var(--js-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .step-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .step-list li {
+            padding: 15px;
+            margin-bottom: 10px;
+            background: rgba(108, 92, 231, 0.05);
+            border-left: 4px solid #6c5ce7;
+            border-radius: 5px;
+        }
+
+        code {
+            background: #2d3436;
+            color: #fab1a0;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Consolas', monospace;
+        }
+
+        pre {
+            background: #2d3436;
+            color: #dfe6e9;
+            padding: 1.5rem;
+            border-radius: 10px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+
+        .badge {
+            background: var(--js-color);
+            color: #000;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        footer {
+            color: rgba(255,255,255,0.8);
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+
+        a { color: var(--js-color); text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Memulai JavaScript</h1>
+    <p>Panduan Dasar Belajar Pemrograman Web</p>
+</header>
+
+<div class="container">
+    <div class="section">
+        <span class="badge">PENGENALAN</span>
+        <h2>Apa itu JavaScript?</h2>
+        <p>JavaScript adalah bahasa pemrograman yang awalnya dibuat untuk membuat halaman web menjadi interaktif. Bersama HTML dan CSS, JS menjadi teknologi inti dalam pengembangan web.</p>
+    </div>
+
+    <div class="section">
+        <h2>Cara Menulis Kode JS</h2>
+        <p>Ada dua cara utama untuk menyisipkan JavaScript ke dalam HTML:</p>
+        <ul class="step-list">
+            <li><strong>Internal:</strong> Menggunakan tag <code>&lt;script&gt;</code> langsung di dalam file HTML.</li>
+            <li><strong>Eksternal:</strong> Menulis kode di file terpisah dengan ekstensi <code>.js</code> lalu menghubungkannya dengan <code>&lt;script src="file.js"&gt;</code>.</li>
+        </ul>
+        <pre>&lt;script&gt;
+  console.log("Hello, World!");
+&lt;/script&gt;</pre>
+    </div>
+
+    <div class="section">
+        <h2>Komponen Dasar yang Dipelajari</h2>
+        <p>Berdasarkan panduan Petani Kode, inilah pilar utama yang harus dikuasai:</p>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div style="background: white; padding: 10px; border-radius: 8px; text-align: center;">
+                <strong>Variabel</strong>
+                <p><small>Penyimpan data</small></p>
+            </div>
+            <div style="background: white; padding: 10px; border-radius: 8px; text-align: center;">
+                <strong>Tipe Data</strong>
+                <p><small>Jenis nilai (teks, angka, dll)</small></p>
+            </div>
+            <div style="background: white; padding: 10px; border-radius: 8px; text-align: center;">
+                <strong>Operator</strong>
+                <p><small>Operasi matematika/logika</small></p>
+            </div>
+            <div style="background: white; padding: 10px; border-radius: 8px; text-align: center;">
+                <strong>Output</strong>
+                <p><small>Menampilkan hasil</small></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Alat yang Dibutuhkan</h2>
+        <p>Cukup dua alat sederhana untuk mulai belajar:</p>
+        <ol>
+            <li><strong>Teks Editor:</strong> VS Code, Sublime Text, atau Notepad++.</li>
+            <li><strong>Web Browser:</strong> Google Chrome, Firefox, atau Edge (untuk menjalankan kode).</li>
+        </ol>
+    </div>
+</div>
+
+<footer>
+    <p>Sumber referensi: <a href="https://www.petanikode.com/javascript-dasar/" target="_blank">Petani Kode - Tutorial JavaScript Dasar</a></p>
+</footer>
+
+</body>
+</html>

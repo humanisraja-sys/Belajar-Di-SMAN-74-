@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Dialog: Print</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #dfe6e9; display: flex; justify-content: center; padding-top: 50px; }
+        .card { background: white; padding: 2.5rem; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); width: 380px; text-align: center; }
+        h2 { color: #2d3436; }
+        button { background: #2d3436; color: white; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; }
+        @media print {
+            button { display: none; } /* Tombol sembunyi saat diprint */
+            body { background: white; }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Cetak Dokumen</h2>
+        <p>Klik tombol di bawah untuk mencetak halaman ini ke PDF atau Printer.</p>
+        <button onclick="window.print()">Cetak Halaman</button>
+    </div>
+</body>
+</html>

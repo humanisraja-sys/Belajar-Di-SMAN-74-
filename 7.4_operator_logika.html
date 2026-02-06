@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Operator Logika</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #ecf0f1; display: flex; justify-content: center; padding-top: 50px; }
+        .card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 400px; }
+        h2 { color: #8e44ad; border-bottom: 2px solid #9b59b6; padding-bottom: 10px; }
+        .res { background: #f9f9f9; border-left: 5px solid #9b59b6; padding: 10px; margin: 10px 0; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Logika (&&, ||, !)</h2>
+        <div id="output" class="res"></div>
+    </div>
+
+    <script>
+        let nilaiUjian = 85;
+        let nilaiAbsen = 90;
+        
+        // Logika AND (&&): Harus keduanya benar
+        let lulus = (nilaiUjian > 75) && (nilaiAbsen > 75);
+        
+        document.getElementById("output").innerHTML = 
+            "Ujian > 75 DAN Absen > 75: " + lulus + "<br>" +
+            "Ujian > 90 ATAU Absen > 90: " + (nilaiUjian > 90 || nilaiAbsen > 90) + "<br>" +
+            "Kebalikan lulus (!lulus): " + (!lulus);
+    </script>
+</body>
+</html>

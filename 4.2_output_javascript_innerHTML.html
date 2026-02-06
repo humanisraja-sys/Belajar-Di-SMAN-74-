@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Output: InnerHTML</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding-top: 50px; }
+        .card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 350px; text-align: center; }
+        h2 { color: #1a73e8; }
+        #hasil { font-weight: bold; color: #d93025; font-size: 1.2rem; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>innerHTML</h2>
+        <p id="hasil">Teks ini akan segera diganti...</p>
+    </div>
+
+    <script>
+        // Mengubah isi elemen ID 'hasil' setelah 1.5 detik
+        setTimeout(() => {
+            document.getElementById("hasil").innerHTML = "Berhasil Diubah!";
+        }, 1500);
+    </script>
+</body>
+</html>

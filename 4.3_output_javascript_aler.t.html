@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Output: Window Alert</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding-top: 50px; }
+        .card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 350px; text-align: center; }
+        h2 { color: #1a73e8; }
+        button { background: #1a73e8; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Window Alert</h2>
+        <p>Klik tombol di bawah untuk melihat output.</p>
+        <button onclick="tampilkanAlert()">Klik Saya</button>
+    </div>
+
+    <script>
+        function tampilkanAlert() {
+            window.alert("Halo! Ini adalah output window.alert()");
+        }
+    </script>
+</body>
+</html>

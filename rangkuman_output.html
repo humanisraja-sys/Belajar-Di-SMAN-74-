@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rangkuman Javascript Output - Petani Kode</title>
+    <style>
+        :root {
+            --primary-color: #f7df1e; /* Warna JS */
+            --secondary-color: #323330;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            color: var(--secondary-color);
+            font-size: 2.5rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            border-top: 5px solid var(--primary-color);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            color: var(--secondary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+        }
+
+        code {
+            background: #2d2d2d;
+            color: #ccc;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 0.85rem;
+        }
+
+        .highlight {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #555;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Javascript Output</h1>
+    <p>Rangkuman Materi Belajar di Petani Kode</p>
+</header>
+
+<div class="container">
+    <p class="intro">Output adalah cara program menampilkan hasil akhir atau pesan kepada pengguna. Di Javascript, terdapat 4 cara utama untuk menampilkan output.</p>
+
+    <div class="grid">
+        <div class="card">
+            <h2>1. Fungsi <code>console.log()</code></h2>
+            <p>Digunakan untuk menampilkan teks atau data ke dalam <strong>Console Javascript</strong> di browser. Biasanya digunakan untuk proses debugging.</p>
+            <pre>console.log("Hello World!");</pre>
+            <p><small>*Tekan F12 pada browser untuk melihat hasilnya di tab Console.</small></p>
+        </div>
+
+        <div class="card">
+            <h2>2. Fungsi <code>alert()</code></h2>
+            <p>Menampilkan jendela dialog (pop-up) di browser. Berguna untuk memberikan peringatan atau informasi singkat kepada user.</p>
+            <pre>alert("Selamat datang di JS!");</pre>
+        </div>
+
+        <div class="card">
+            <h2>3. Fungsi <code>document.write()</code></h2>
+            <p>Menuliskan teks atau elemen langsung ke dalam dokumen HTML. Hati-hati, jika dipanggil setelah halaman selesai dimuat, ia bisa menghapus isi seluruh halaman.</p>
+            <pre>document.write("Teks ini muncul di body");</pre>
+        </div>
+
+        <div class="card">
+            <h2>4. Atribut <code>innerHTML</code></h2>
+            <p>Cara paling fleksibel untuk menampilkan output ke elemen HTML tertentu berdasarkan ID atau class-nya.</p>
+            <pre>
+let el = document.getElementById("hasil");
+el.innerHTML = "Halo dari InnerHTML!";
+            </pre>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>Sumber Materi: <a href="https://www.petanikode.com/javascript-output/" target="_blank">Petani Kode - Javascript Output</a></p>
+</footer>
+
+</body>
+</html>
