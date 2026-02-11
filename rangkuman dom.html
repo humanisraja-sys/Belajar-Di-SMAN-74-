@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WPU JS & DOM Mastery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- RESET & VARIABLES --- */
+        :root {
+            --js-yellow: #f7df1e;
+            --dark-bg: #0f0f11;
+            --card-bg: rgba(40, 40, 45, 0.6);
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --neon-glow: 0 0 15px rgba(247, 223, 30, 0.3);
+            --border-glass: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(247, 223, 30, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(46, 204, 113, 0.05) 0%, transparent 20%);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER SECTION --- */
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            width: 100%;
+            max-width: 800px;
+            position: relative;
+        }
+
+        h1 {
+            font-weight: 800;
+            font-size: 2.5rem;
+            margin: 0;
+            background: linear-gradient(to right, #fff, var(--js-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            margin-top: 10px;
+            color: var(--text-muted);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+        }
+
+        .search-box {
+            margin-top: 30px;
+            width: 100%;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 50px;
+            border: var(--border-glass);
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .search-input:focus {
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: var(--neon-glow);
+            border-color: var(--js-yellow);
+        }
+
+        /* --- CARD GRID --- */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            width: 90%;
+            max-width: 1200px;
+            padding-bottom: 50px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: var(--border-glass);
+            border-radius: 16px;
+            padding: 25px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            animation: fadeIn 0.5s ease forwards;
+            opacity: 0; /* Hidden initially for animation */
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--js-yellow);
+            opacity: 0.5;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4), var(--neon-glow);
+            border-color: rgba(247, 223, 30, 0.3);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+            box-shadow: 0 0 10px var(--js-yellow);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .badge {
+            background: rgba(247, 223, 30, 0.2);
+            color: var(--js-yellow);
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .icon {
+            font-size: 1.8rem;
+        }
+
+        .card h3 {
+            margin: 0 0 10px 0;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .read-more {
+            margin-top: 15px;
+            font-size: 0.8rem;
+            color: var(--js-yellow);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* --- MODAL --- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: #1a1a1d;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 90%;
+            border: 1px solid #333;
+            position: relative;
+            transform: scale(0.7);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            border-bottom: 1px solid #333;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .modal h2 {
+            margin: 0;
+            color: var(--js-yellow);
+            font-family: 'Fira Code', monospace;
+        }
+
+        .modal p {
+            line-height: 1.8;
+            color: #dcdcdc;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            color: #fff;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .close-btn:hover { color: var(--js-yellow); }
+
+        /* Animation Keyframes */
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .modal-content { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div style="font-size: 3rem; margin-bottom: 10px;">⚡</div>
+        <h1>Javascript & DOM</h1>
+        <div class="subtitle">WPU LEARNING PATH • UNOFFICIAL SUMMARY</div>
+        
+        <div class="search-box">
+            <input type="text" id="searchInput" class="search-input" placeholder="Cari materi (contoh: 'Event', 'Selector')...">
+        </div>
+    </header>
+
+    <div class="container" id="cardContainer">
+        </div>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <div class="modal-header">
+                <span class="badge" id="modalBadge">VIDEO #1</span>
+                <h2 id="modalTitle" style="margin-top: 10px;">Judul Materi</h2>
+            </div>
+            <div class="modal-body">
+                <p id="modalDesc">Deskripsi lengkap materi akan muncul di sini.</p>
+            </div>
+            <div style="margin-top: 20px; text-align: right;">
+                <button onclick="closeModal()" style="background:var(--js-yellow); border:none; padding:10px 20px; border-radius:5px; font-weight:bold; cursor:pointer;">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DATA
+        const summaries = [
+            { id: 1, icon: "🌐", title: "Pendahuluan DOM", desc: "Mengenal apa itu DOM (Document Object Model), antarmuka pemrograman untuk dokumen web. Memahami bagaimana browser menerjemahkan HTML menjadi pohon objek yang bisa dimanipulasi oleh JavaScript." },
+            { id: 2, icon: "🌳", title: "DOM Tree", desc: "Membedah struktur hierarki node. Memahami perbedaan antara NodeList vs HTMLCollection, serta jenis-jenis node seperti Element, Attribute, dan Text Node." },
+            { id: 3, icon: "🔍", title: "Selection: Get Element", desc: "Metode seleksi 'Old School' namun tercepat: document.getElementById() untuk satu elemen dan document.getElementsByTagName() untuk mengambil koleksi elemen HTML." },
+            { id: 4, icon: "🎯", title: "Selection: Query", desc: "Metode modern dan fleksibel: querySelector() dan querySelectorAll(). Memungkinkan kita memilih elemen menggunakan sintaks selektor CSS (misal: '.class', '#id', 'div > p')." },
+            { id: 5, icon: "✏️", title: "Manipulation: Content", desc: "Mengubah isi elemen menggunakan innerHTML, innerText, dan textContent. Serta manipulasi atribut elemen menggunakan setAttribute(), getAttribute(), dan removeAttribute()." },
+            { id: 6, icon: "🏗️", title: "Manipulation: Node", desc: "Teknik manipulasi node yang lebih dalam: document.createElement(), document.createTextNode(), dan menggabungkannya ke DOM menggunakan appendChild() atau insertBefore()." },
+            { id: 7, icon: "🖱️", title: "DOM Events", desc: "Membuat halaman interaktif. Perbedaan antara Inline HTML attribute, Element Method, dan metode terbaik: addEventListener()." },
+            { id: 8, icon: "🎨", title: "Latihan: Warna", desc: "Studi Kasus 1: Membuat aplikasi pengubah warna background. Belajar memanipulasi style body, menggunakan Math.random() untuk warna acak, dan event change pada slider." },
+            { id: 9, icon: "✌️", title: "Latihan: Suwit Jawa", desc: "Studi Kasus 2: Membuat Game Suwit Jawa. Fokus pada logika permainan (If/Else), manipulasi gambar (setAttribute src), dan timing function untuk animasi putar gambar." },
+            { id: 10, icon: "family", title: "DOM Traversal", desc: "Menelusuri silsilah keluarga elemen tanpa menyeleksi ulang. Menggunakan parentElement, nextElementSibling, dan previousElementSibling. [Icon: 👨‍👩‍👧‍👦 diganti text agar render aman]" },
+            { id: 11, icon: "🛑", title: "Prevent Default", desc: "Memahami perilaku bawaan browser (seperti form submit me-refresh halaman atau link berpindah url) dan cara menghentikannya menggunakan method event.preventDefault()." },
+            { id: 12, icon: "🫧", title: "Event Bubbling", desc: "Konsep penting di mana event pada child akan 'naik' ke parent-nya. Solusi untuk menangani banyak elemen dinamis dan cara stopPropagation()." },
+            { id: 13, icon: "🖼️", title: "Gallery & Delegation", desc: "Studi Kasus 3: Membuat Image Gallery. Menggunakan teknik Event Delegation (menempelkan event pada container pembungkus) untuk efisiensi memori." },
+            { id: 14, icon: "🚀", title: "Next Level", desc: "Rangkuman perjalanan belajar DOM dan saran materi lanjutan seperti Javascript Lanjutan (Prototype, Closure, Execution Context) atau Framework Modern." }
+        ];
+
+        // Replace icon text fix for item 10
+        summaries[9].icon = "👨‍👩‍👧";
+
+        const container = document.getElementById('cardContainer');
+        const searchInput = document.getElementById('searchInput');
+
+        // RENDER FUNCTION
+        function renderCards(data) {
+            container.innerHTML = '';
+            data.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                // Staggered animation delay
+                card.style.animationDelay = `${index * 0.1}s`;
+                
+                card.innerHTML = `
+                    <div class="card-header">
+                        <span class="icon">${item.icon}</span>
+                        <span class="badge">Eps. ${item.id}</span>
+                    </div>
+                    <div>
+                        <h3>${item.title}</h3>
+                        <p>${item.desc}</p>
+                        <div class="read-more">Detail Materi <span>&rarr;</span></div>
+                    </div>
+                `;
+                card.onclick = () => openModal(item);
+                container.appendChild(card);
+            });
+        }
+
+        // INITIAL RENDER
+        renderCards(summaries);
+
+        // SEARCH FUNCTIONALITY
+        searchInput.addEventListener('input', (e) => {
+            const keyword = e.target.value.toLowerCase();
+            const filtered = summaries.filter(item => 
+                item.title.toLowerCase().includes(keyword) || 
+                item.desc.toLowerCase().includes(keyword)
+            );
+            renderCards(filtered);
+        });
+
+        // MODAL FUNCTIONS
+        const modal = document.getElementById('modal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDesc = document.getElementById('modalDesc');
+        const modalBadge = document.getElementById('modalBadge');
+
+        function openModal(item) {
+            modalTitle.innerText = item.title;
+            modalDesc.innerText = item.desc;
+            modalBadge.innerText = `VIDEO #${item.id}`;
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        // Close when clicking outside content
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+        
+        // Close on Escape key
+        document.addEventListener('keydown', function(event) {
+            if(event.key === "Escape") {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
