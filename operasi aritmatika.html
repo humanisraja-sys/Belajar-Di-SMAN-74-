@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Daftar Operasi Aritmatika JS</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            border: 1px solid #334155;
+        }
+
+        h2 { color: #38bdf8; text-align: center; margin-bottom: 25px; }
+
+        .input-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            background: #0f172a;
+            color: white;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .result-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .op-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #334155;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .op-card:hover { background: #475569; }
+
+        .label { font-weight: 500; color: #94a3b8; }
+        .math-expr { font-family: 'Courier New', monospace; color: #fbbf24; }
+        .value { font-size: 1.2rem; font-weight: bold; color: #2dd4bf; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Operasi Aritmatika Lengkap</h2>
+    
+    <div class="input-group">
+        <input type="number" id="valA" value="10" oninput="updateAll()">
+        <input type="number" id="valB" value="3" oninput="updateAll()">
+    </div>
+
+    <div class="result-list" id="results">
+        </div>
+</div>
+
+<script>
+    function updateAll() {
+        const a = parseFloat(document.getElementById('valA').value) || 0;
+        const b = parseFloat(document.getElementById('valB').value) || 0;
+        const container = document.getElementById('results');
+
+        // Daftar operasi (Nama, Simbol, Hitungan)
+        const operations = [
+            { name: "Pertambahan", symbol: "+", res: a + b },
+            { name: "Pengurangan", symbol: "-", res: a - b },
+            { name: "Perkalian", symbol: "*", res: a * b },
+            { name: "Pembagian", symbol: "/", res: b !== 0 ? (a / b).toFixed(2) : "∞" },
+            { name: "Modulus (Sisa)", symbol: "%", res: a % b },
+            { name: "Perpangkatan", symbol: "**", res: Math.pow(a, b).toLocaleString() }
+        ];
+
+        container.innerHTML = operations.map(op => `
+            <div class="op-card">
+                <div>
+                    <div class="label">${op.name}</div>
+                    <div class="math-expr">${a} ${op.symbol} ${b}</div>
+                </div>
+                <div class="value">${op.res}</div>
+            </div>
+        `).join('');
+    }
+
+    // Jalankan pertama kali saat load
+    updateAll();
+</script>
+
+</body>
+</html>
