@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Arithmetic Suite</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f8fafc;
+            --accent: #22d3ee;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: var(--card);
+            width: 100%;
+            max-width: 450px;
+            padding: 2rem;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            background: linear-gradient(to right, #818cf8, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+        }
+
+        .inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .input-box label {
+            display: block;
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+            color: #94a3b8;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            border: 2px solid #334155;
+            background: #0f172a;
+            color: white;
+            font-size: 1.1rem;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .results-grid {
+            display: grid;
+            gap: 10px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 18px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .op-name { font-size: 0.9rem; color: #94a3b8; }
+        .op-math { font-family: monospace; color: var(--accent); }
+        .op-value { font-weight: bold; font-size: 1.1rem; }
+
+        .console-note {
+            margin-top: 20px;
+            font-size: 0.75rem;
+            text-align: center;
+            color: #64748b;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>JS Arithmetic Engine</h2>
+    
+    <div class="inputs">
+        <div class="input-box">
+            <label>Angka (A)</label>
+            <input type="number" id="a" value="10" oninput="calculate()">
+        </div>
+        <div class="input-box">
+            <label>Angka (B)</label>
+            <input type="number" id="b" value="3" oninput="calculate()">
+        </div>
+    </div>
+
+    <div class="results-grid" id="display">
+        </div>
+
+    <p class="console-note">Buka Console (F12) untuk melihat proses dibalik layar.</p>
+</div>
+
+<script>
+    function calculate() {
+        // Ambil Nilai
+        const valA = parseFloat(document.getElementById('a').value) || 0;
+        const valB = parseFloat(document.getElementById('b').value) || 0;
+        
+        // Simpan operasi dalam Array of Objects
+        const ops = [
+            { label: "Pertambahan", sym: "+", res: valA + valB },
+            { label: "Pengurangan", sym: "-", res: valA - valB },
+            { label: "Perkalian", sym: "*", res: valA * valB },
+            { label: "Pembagian", sym: "/", res: valB !== 0 ? (valA / valB).toFixed(2) : "Error" },
+            { label: "Modulus (Sisa)", sym: "%", res: valA % valB },
+            { label: "Perpangkatan", sym: "**", res: (valA ** valB).toLocaleString() }
+        ];
+
+        // Tampilkan ke HTML
+        const display = document.getElementById('display');
+        display.innerHTML = ops.map(op => `
+            <div class="result-item">
+                <div>
+                    <span class="op-name">${op.label}</span><br>
+                    <span class="op-math">${valA} ${op.sym} ${valB}</span>
+                </div>
+                <div class="op-value">${op.res}</div>
+            </div>
+        `).join('');
+
+        // Tampilkan ke Console sesuai request kamu
+        console.clear();
+        console.log("%c--- OPERASI ARITMATIKA LENGKAP ---", "color: #6366f1; font-weight: bold;");
+        ops.forEach(op => {
+            console.log(`${op.label} (${op.sym}): ${op.res}`);
+        });
+    }
+
+    // Inisialisasi saat pertama buka
+    calculate();
+</script>
+
+</body>
+</html>
